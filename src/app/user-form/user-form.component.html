@@ -1,0 +1,50 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow">
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4">User Form</h2>
+          <form [formGroup]="form" (ngSubmit)="save()">
+            <div class="mb-3" *ngIf="form.get('id')?.value">
+              <label for="id" class="form-label">User ID:</label>
+              <input id="id" type="text" formControlName="id" class="form-control" readonly />
+            </div>
+
+            <div class="mb-3">
+              <label for="nome" class="form-label">Name:</label>
+              <input id="nome" type="text" formControlName="nome" class="form-control"
+                     [class.is-invalid]="form.get('nome')?.invalid && form.get('nome')?.touched" />
+              <div *ngIf="form.get('nome')?.invalid && form.get('nome')?.touched" class="invalid-feedback">
+                <span *ngIf="form.get('nome')?.errors?.['required']">Name is required.</span>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address:</label>
+              <input id="email" type="email" formControlName="email" class="form-control"
+                     [class.is-invalid]="form.get('email')?.invalid && form.get('email')?.touched" />
+              <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="invalid-feedback">
+                <span *ngIf="form.get('email')?.errors?.['required']">Email is required.</span>
+                <span *ngIf="form.get('email')?.errors?.['email']">Enter a valid email.</span>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="senha" class="form-label">Password:</label>
+              <input id="senha" type="password" formControlName="senha" class="form-control"
+                     [class.is-invalid]="form.get('senha')?.invalid && form.get('senha')?.touched" />
+              <div *ngIf="form.get('senha')?.invalid && form.get('senha')?.touched" class="invalid-feedback">
+                <span *ngIf="form.get('senha')?.errors?.['required']">Password is required.</span>
+              </div>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button type="submit" class="btn btn-success me-md-2" [disabled]="form.invalid">Save User</button>
+              <button type="button" class="btn btn-secondary" (click)="backToRoot()">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

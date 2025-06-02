@@ -1,0 +1,81 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow">
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4">Address Form</h2>
+          <form [formGroup]="form" (ngSubmit)="save()">
+            <div class="mb-3" *ngIf="form.get('id')?.value">
+              <label for="id" class="form-label">Address ID:</label>
+              <input id="id" type="text" formControlName="id" class="form-control" readonly />
+            </div>
+
+            <div class="mb-3">
+              <label for="logradouro" class="form-label">Street:</label>
+              <input id="logradouro" type="text" formControlName="logradouro" class="form-control"
+                     [class.is-invalid]="form.get('logradouro')?.invalid && form.get('logradouro')?.touched" />
+              <div *ngIf="form.get('logradouro')?.invalid && form.get('logradouro')?.touched" class="invalid-feedback">
+                <span *ngIf="form.get('logradouro')?.errors?.['required']">Street is required.</span>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="numero" class="form-label">Number:</label>
+              <input id="numero" type="text" formControlName="numero" class="form-control"
+                     [class.is-invalid]="form.get('numero')?.invalid && form.get('numero')?.touched" />
+              <div *ngIf="form.get('numero')?.invalid && form.get('numero')?.touched" class="invalid-feedback">
+                <span *ngIf="form.get('numero')?.errors?.['required']">Number is required.</span>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="complemento" class="form-label">Complement:</label>
+              <input id="complemento" type="text" formControlName="complemento" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+              <label for="bairro" class="form-label">Neighborhood:</label>
+              <input id="bairro" type="text" formControlName="bairro" class="form-control"
+                     [class.is-invalid]="form.get('bairro')?.invalid && form.get('bairro')?.touched" />
+              <div *ngIf="form.get('bairro')?.invalid && form.get('bairro')?.touched" class="invalid-feedback">
+                <span *ngIf="form.get('bairro')?.errors?.['required']">Neighborhood is required.</span>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="cidade" class="form-label">City:</label>
+              <input id="cidade" type="text" formControlName="cidade" class="form-control"
+                     [class.is-invalid]="form.get('cidade')?.invalid && form.get('cidade')?.touched" />
+              <div *ngIf="form.get('cidade')?.invalid && form.get('cidade')?.touched" class="invalid-feedback">
+                <span *ngIf="form.get('cidade')?.errors?.['required']">City is required.</span>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="estado" class="form-label">State:</label>
+              <input id="estado" type="text" formControlName="estado" class="form-control"
+                     [class.is-invalid]="form.get('estado')?.invalid && form.get('estado')?.touched" />
+              <div *ngIf="form.get('estado')?.invalid && form.get('estado')?.touched" class="invalid-feedback">
+                <span *ngIf="form.get('estado')?.errors?.['required']">State is required.</span>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="cep" class="form-label">CEP:</label>
+              <input id="cep" type="text" formControlName="cep" class="form-control"
+                     [class.is-invalid]="form.get('cep')?.invalid && form.get('cep')?.touched" />
+              <div *ngIf="form.get('cep')?.invalid && form.get('cep')?.touched" class="invalid-feedback">
+                <span *ngIf="form.get('cep')?.errors?.['required']">CEP is required.</span>
+              </div>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button type="submit" class="btn btn-success me-md-2" [disabled]="form.invalid">Save Address</button>
+              <button type="button" class="btn btn-secondary" (click)="backToRoot()">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

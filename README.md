@@ -1,2 +1,1 @@
-# usuaddr-front
-Application for basic user data handling.
+Sample application for user data handling.
