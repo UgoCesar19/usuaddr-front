@@ -1,0 +1,15 @@
+<header class="navbar navbar-expand-lg navbar-light bg-light px-3">
+    <div class="container-fluid">
+      <!-- Logo Placeholder -->
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <span class="me-2 fw-bold">LOGO</span>
+      </a>
+  
+      @if(isLoggedIn) {
+        <div class="d-flex align-items-center ms-auto">
+            <span class="me-3">Welcome</span>
+            <button (click)="logout()" class="btn btn-outline-danger btn-sm">Logout</button>
+        </div>
+      }
+    </div>
+  </header>

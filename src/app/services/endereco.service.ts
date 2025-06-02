@@ -8,7 +8,8 @@ import { environment } from '../../environments/environment';
 export class EnderecoService {
   private readonly enderecosEndpoint = `${environment.apiUrl}/enderecos`;
   
-  private usuarioEditado!: number;
+  private usuarioEditado: number | undefined;
+  private enderecoEditado: Endereco | undefined;
 
   constructor(private http: HttpClient) {}
 
@@ -24,12 +25,20 @@ export class EnderecoService {
     return this.http.delete<void>(`${this.enderecosEndpoint}/${id}`);
   }
 
-  public getUsuarioEditado(): number {
+  public getUsuarioEditado(): number | undefined {
     return this.usuarioEditado;
   }
 
-  public setUsuarioEditado(usuarioId: number): void {
+  public setUsuarioEditado(usuarioId: number | undefined): void {
     this.usuarioEditado = usuarioId;
+  }
+
+  public getEnderecoEditado(): Endereco | undefined {
+    return this.enderecoEditado;
+  }
+
+  public setEnderecoEditado(endereco: Endereco | undefined): void {
+    this.enderecoEditado = endereco;
   }
 
 }

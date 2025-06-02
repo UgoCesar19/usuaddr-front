@@ -11,7 +11,6 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './login.component.html'
 })
 export class LoginComponent {
-  loading = false;
   error: string | null = null;
 
   form: FormGroup;
@@ -26,16 +25,6 @@ export class LoginComponent {
   }
 
   submit(): void {
-    this.loading = true;
-    this.authService.login(this.form.value).subscribe({
-      next: () => {
-        this.loading = false;
-        this.router.navigateByUrl('/');
-      },
-      error: (error) => {
-        this.loading = false;
-        this.error = 'Credenciais inválidas: ' + JSON.stringify(error);
-      }
-    });
+    this.authService.login(this.form.value);
   }
 }

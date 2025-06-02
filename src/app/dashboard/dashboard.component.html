@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="container mt-4">
   <h2 class="mb-4">Dashboard</h2>
 
@@ -23,9 +24,9 @@
               <td>{{ user.nome }}</td>
               <td>{{ user.email }}</td>
               <td>
-                <button class="btn btn-sm btn-info me-2">Edit User</button>
+                <button class="btn btn-sm btn-info me-2" (click)="editUser(user)">Edit User</button>
                 <button class="btn btn-sm btn-info me-2" (click)="addAddress(user.id)">Add New Address</button>
-                <button class="btn btn-sm btn-danger">Delete User</button>
+                <button class="btn btn-sm btn-danger" (click)="deleteUser(user.id)">Delete User</button>
               </td>
             </tr>
           </tbody>
@@ -68,8 +69,8 @@
               <td>{{ address.cep }}</td>
               <td>{{ address.usuario.id }}</td>
               <td>
-                <button class="btn btn-sm btn-info me-2">Edit</button>
-                <button class="btn btn-sm btn-danger">Delete</button>
+                <button class="btn btn-sm btn-info me-2" (click)="editAddress(address)">Edit</button>
+                <button class="btn btn-sm btn-danger" (click)="deleteAddress(address.id)">Delete</button>
               </td>
             </tr>
           </tbody>

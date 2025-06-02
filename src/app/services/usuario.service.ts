@@ -8,6 +8,8 @@ import { environment } from '../../environments/environment';
 export class UsuarioService {
   private readonly usuariosEndpoint = `${environment.apiUrl}/usuarios`;
 
+  private usuarioEditado: Usuario | undefined;
+
   constructor(private http: HttpClient) {}
 
   public getUsuarios(): Observable<Usuario[]> {
@@ -24,6 +26,14 @@ export class UsuarioService {
 
   public delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.usuariosEndpoint}/${id}`);
+  }
+
+  public getUsuarioEditado(): Usuario | undefined {
+    return this.usuarioEditado;
+  }
+
+  public setUsuarioEditado(usuario: Usuario | undefined): void {
+    this.usuarioEditado = usuario;
   }
 
 }

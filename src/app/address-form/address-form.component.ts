@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { EnderecoService } from '../services/endereco.service';
 import { Router } from '@angular/router';
+import { OnInit } from '../../../node_modules/@angular/core/index';
+import { Endereco } from '../model/endereco.model';
 
 @Component({
   selector: 'app-address-form',
@@ -10,7 +12,7 @@ import { Router } from '@angular/router';
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './address-form.component.html'
 })
-export class AddressFormComponent {
+export class AddressFormComponent implements OnInit {
   form: FormGroup;
 
   constructor(private fb: FormBuilder, private enderecoService: EnderecoService, private router: Router) {
@@ -28,11 +30,26 @@ export class AddressFormComponent {
 
   }
 
+  public ngOnInit(): void {
+    let endereco: Endereco | undefined = this.enderecoService.getEnderecoEditado();
+    if (endereco) {
+      this.enderecoService.setUsuarioEditado(endereco.usuario.id);
+      this.form.patchValue(endereco);
+    }
+  }
+
   save(): void {
-    this.enderecoService.save(this.enderecoService.getUsuarioEditado(), this.form.value).subscribe(() => this.router.navigateByUrl('/'));
+    let usuarioId: number | undefined = this.enderecoService.getUsuarioEditado();
+    if (usuarioId) {
+      this.enderecoService.save(usuarioId, this.form.value).subscribe(() => {
+        this.backToRoot();
+      });
+    }
   }
 
   backToRoot() {
+    this.enderecoService.setEnderecoEditado(undefined);
+    this.enderecoService.setUsuarioEditado(undefined);
     this.router.navigateByUrl('/');
   }
 }
