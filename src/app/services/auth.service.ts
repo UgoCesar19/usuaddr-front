@@ -21,7 +21,6 @@ export class AuthService {
   login(credentials: any): void {
     this.http.post<AuthResponse>(`${this.apiBasePath}/autenticar`, credentials).subscribe({
       next: (response: AuthResponse) => {
-        console.log("Autenticação realizada: " + JSON.stringify(response));
         this.authResponse = response;
         this.router.navigateByUrl('/');
       }
