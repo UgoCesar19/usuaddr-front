@@ -56,8 +56,8 @@ After logging in with valid credentials, you will be redirected to the dashboard
 
 ## 🔐 Default Roles
 
-- **ADMINISTRATOR**: Can manage users and addresses (not implemented).
-- **NORMAL**: Can view and manage only their own addresses (not implemented).
+- **ADMINISTRATOR**: Can manage users and addresses.
+- **NORMAL USER**: Can edit and delete only their own data.
 
 ## 🔧 Configuration
 
