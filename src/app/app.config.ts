@@ -4,8 +4,11 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { authInterceptor } from './interceptors/auth.interceptor';
-import { errorFeedbackInterceptor } from './interceptors/error-feedback.interceptor';
 import { spinnerInterceptor } from './interceptors/spinner.interceptor';
+
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideToastr } from 'ngx-toastr';
+import { feedbackInterceptor } from './interceptors/feedback.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,9 +16,16 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(
       withInterceptors([
         authInterceptor,
-        errorFeedbackInterceptor,
-        spinnerInterceptor
+        spinnerInterceptor,
+        feedbackInterceptor
       ])),
-    provideRouter(routes)
+    provideRouter(routes),
+    provideAnimations(),
+    provideToastr({
+      timeOut: 3000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+      progressBar: true,
+    })
   ]
 };
