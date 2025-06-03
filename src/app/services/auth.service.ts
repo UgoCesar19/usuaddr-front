@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { AuthResponse } from '../model/auth-response.model';
+import { Usuario } from '../model/usuario.model';
+import { jwtDecode, JwtPayload } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,7 @@ export class AuthService {
   private readonly apiBasePath = environment.apiUrl;
 
   private authResponse: AuthResponse | undefined;
-  
+
   constructor(
     private http: HttpClient,
     private router: Router
@@ -33,6 +35,12 @@ export class AuthService {
 
   setTokens(response: AuthResponse): void {
     this.authResponse = response;
+  }
+
+  public getUsuarioLogadoEmail(): string | undefined {
+    if (this.authResponse?.tokenAcesso)
+      return jwtDecode<JwtPayload>(this.authResponse?.tokenAcesso).sub;
+    return undefined;
   }
 
   logout(): void {

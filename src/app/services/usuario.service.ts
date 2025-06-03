@@ -10,6 +10,8 @@ export class UsuarioService {
 
   private usuarioEditado: Usuario | undefined;
 
+  private usuarioLogado!: Usuario;
+
   constructor(private http: HttpClient) {}
 
   public getUsuarios(): Observable<Usuario[]> {
@@ -34,6 +36,14 @@ export class UsuarioService {
 
   public setUsuarioEditado(usuario: Usuario | undefined): void {
     this.usuarioEditado = usuario;
+  }
+
+  public getUsuarioLogado(): Usuario {
+    return this.usuarioLogado;
+  }
+
+  public setUsuarioLogado(usuario: Usuario): void {
+    this.usuarioLogado = usuario;
   }
 
 }

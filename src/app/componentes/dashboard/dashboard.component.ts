@@ -6,6 +6,7 @@ import { Usuario } from '../../model/usuario.model';
 import { Endereco } from '../../model/endereco.model';
 import { Router } from '@angular/router';
 import { HeaderComponent } from '../page-header/page-header.component';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,6 +21,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     private usuarioService: UsuarioService,
     private enderecoService: EnderecoService,
+    private authService: AuthService,
     private router: Router
   ) {}
 
@@ -32,6 +34,12 @@ export class DashboardComponent implements OnInit {
     this.usuarioService.getUsuarios().subscribe({
       next: (data: any) => {
         this.usuarios = data.content;
+        
+        let usuario: Usuario = this.usuarios.filter((u: Usuario) => {
+          return u.email == this.authService.getUsuarioLogadoEmail();
+        })[0];
+
+        this.usuarioService.setUsuarioLogado(usuario);
       }
     });
   }
@@ -78,6 +86,14 @@ export class DashboardComponent implements OnInit {
         this.getAddress();
       }
     });
+  }
+
+  public habilitaOpcao(usuarioId: number): boolean {
+    if (this.usuarioService.getUsuarioLogado().perfis[0].authority == "ROLE_ADMIN")
+      return true;
+    if (usuarioId == this.usuarioService.getUsuarioLogado().id)
+      return true;
+    return false;
   }
 
 }

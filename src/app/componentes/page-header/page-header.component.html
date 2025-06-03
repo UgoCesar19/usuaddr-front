@@ -6,7 +6,7 @@
   
         @if(isLoggedIn) {
             <div class="d-flex align-items-center ms-auto">
-                <span class="me-3">Welcome</span>
+                <span class="me-3">Welcome {{ getUsuarioNome() }}</span>
                 <button (click)="logout()" class="btn btn-outline-danger btn-sm">Logout</button>
             </div>
         }
