@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { UsuarioService } from '../services/usuario.service';
+import { UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
-import { OnInit } from '../../../node_modules/@angular/core/index';
-import { Usuario } from '../model/usuario.model';
+import { OnInit } from '../../../../node_modules/@angular/core/index';
+import { Usuario } from '../../model/usuario.model';
 
 @Component({
   selector: 'app-user-form',

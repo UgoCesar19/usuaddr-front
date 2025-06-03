@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UsuarioService } from '../services/usuario.service';
-import { EnderecoService } from '../services/endereco.service';
-import { Usuario } from '../model/usuario.model';
-import { Endereco } from '../model/endereco.model';
+import { UsuarioService } from '../../services/usuario.service';
+import { EnderecoService } from '../../services/endereco.service';
+import { Usuario } from '../../model/usuario.model';
+import { Endereco } from '../../model/endereco.model';
 import { Router } from '@angular/router';
 import { HeaderComponent } from '../page-header/page-header.component';
 
