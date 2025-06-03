@@ -1,9 +1,8 @@
-// src/app/services/auth.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment'; // Adjust path if needed
+import { environment } from '../../environments/environment';
 import { AuthResponse } from '../model/auth-response.model';
 
 @Injectable({
@@ -47,7 +46,7 @@ export class AuthService {
   }
 
   register(userData: any): Observable<any> {
-    return this.http.post<any>(`${this.apiBasePath}/registro`, userData);
+    return this.http.post<any>(`${this.apiBasePath}/registrar`, userData);
   }
   
   refreshToken(): Observable<AuthResponse> {

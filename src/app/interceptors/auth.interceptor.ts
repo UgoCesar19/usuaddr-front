@@ -1,6 +1,6 @@
 import { HttpInterceptorFn, HttpRequest, HttpHandlerFn, HttpErrorResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { AuthService } from '../services/auth.service'; // Adjust path if needed
+import { AuthService } from '../services/auth.service';
 import { catchError, switchMap } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { AuthResponse } from '../model/auth-response.model';
@@ -13,9 +13,8 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   return next(reqWithToken).pipe(
     catchError((error: HttpErrorResponse) => {
       if (error.status === 401 &&
-          !req.url.includes('/auth/login') &&
-          !req.url.includes('/auth/registro') &&
-          !req.url.includes('/auth/refresh-token')) {
+          !req.url.includes('/login') &&
+          !req.url.includes('/register')) {
         return handle401Error(req, next, authService);
       }
       return throwError(() => error);

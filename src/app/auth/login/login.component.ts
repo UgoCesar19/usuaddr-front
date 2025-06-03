@@ -27,4 +27,9 @@ export class LoginComponent {
   submit(): void {
     this.authService.login(this.form.value);
   }
+
+  registrar(): void {
+    this.router.navigateByUrl("/register");
+  }
+
 }
